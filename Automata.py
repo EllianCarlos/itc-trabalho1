@@ -1,32 +1,41 @@
 from typing import List
-from AutomataState import AutomataState
+from AutomataState import EstadoDeAutomato
 
 
-class Automata:
-    def __init__(self, states: List[AutomataState], terminalSymbols: List[str], initialStates: List[int], acceptanceStates: List[int]) -> None:
-        self.states: List[AutomataState] = states
-        self.terminalSymbols: List[str] = terminalSymbols
-        self.initialStates = initialStates
-        self.acceptanceStates = acceptanceStates
+class Automato:
+    def __init__(self, estados: List[EstadoDeAutomato], simbolosTerminais: List[str], estadosIniciais: List[int], estadosDeAceitacao: List[int]) -> None:
+        self.estados: List[EstadoDeAutomato] = estados
+        self.simbolosTerminais: List[str] = simbolosTerminais
+        self.estadosIniciais = estadosIniciais
+        self.estadosDeAceitacao = estadosDeAceitacao
         pass
 
-    def addTransition(self, stateSource: str, stateDestination: str, transition: str) -> None:
-        self.states[int(stateSource)].addTransition(stateDestination, transition)
+    def adicionaTransicao(self, estadoOrigem: str, estadoDestino: str, transicao: str) -> None:
+        self.estados[int(estadoOrigem)].adicionaTransicao(
+            estadoDestino, transicao)
         return
 
-    def printAllValues(self):
-        for i in self.states:
-            print(i.transitions.values());
+    def testaSequenciaPorTodosEstados(self, sequencia) -> bool:
+        # TODO: Corrigir para funcionar com Lambda
+        if sequencia == '-':
+            return False
+        for estadoInicial in self.estadosIniciais:
+            eSequenciaValida = self.testaSequencia(sequencia, 0, estadoInicial)
+            if eSequenciaValida is True:
+                return True
 
-    def nextStateFromTransition(self, automataState: str) -> AutomataState:
-        return;
-
-
-    def testSequence(self, sequence) -> bool:
-        # Funciona apenas para AFD
-        state = self.initialStates[0]
-        for symbol in sequence:
-            if symbol == '-':
+    def testaSequencia(self, sequencia: str, indexDaSequencia: int, estado: int) -> bool:
+        if len(sequencia) == indexDaSequencia:
+            if str(estado) in self.estadosDeAceitacao:
+                return True
+            else:
                 return False
-            state = self.states[state].transitions[symbol]
-        return str(state) in self.acceptanceStates
+
+        estadoDoAutomato: EstadoDeAutomato = self.estados[estado]
+        simboloAtual = sequencia[indexDaSequencia]
+        resultados = list()
+        if simboloAtual in estadoDoAutomato.transicoes.keys():
+            for proximoEstado in estadoDoAutomato.transicoes[simboloAtual]:
+                resultados.append(self.testaSequencia(
+                    sequencia=sequencia, indexDaSequencia=indexDaSequencia+1, estado=proximoEstado))
+        return True in resultados

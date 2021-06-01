@@ -1,12 +1,16 @@
-from typing import Dict
+from typing import Dict, List
 
 
-class AutomataState:
+class EstadoDeAutomato:
     def __init__(self, number) -> None:
-        self.number: str = str(number)
-        self.transitions: Dict[str, int] = {}
+        self.identificador: str = str(number)
+        self.transicoes: Dict[str, List[int]] = {}
         pass
 
-    def addTransition(self, stateDestination: str, transition: str) -> None:
-        self.transitions[transition] = int(stateDestination)
+    def adicionaTransicao(self, estadoDestino: str, transicao: str) -> None:
+        if transicao in self.transicoes.keys():
+            self.transicoes[transicao].append(int(estadoDestino))
+        else:
+            self.transicoes[transicao] = list()
+            self.transicoes[transicao].append(int(estadoDestino))
         return

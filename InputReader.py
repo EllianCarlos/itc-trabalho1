@@ -1,68 +1,68 @@
-from Automata import Automata
+from Automata import Automato
 from typing import List
-from AutomataState import AutomataState
+from AutomataState import EstadoDeAutomato
 
 
-def getStates() -> List[AutomataState]:
-    maxNumberOfStates = 10
-    minNumberOfStates = 1
-    numberOfStates = int(input(''))
-    assert (numberOfStates >= minNumberOfStates and
-            numberOfStates <= maxNumberOfStates)
-    states = []
-    for i in range(numberOfStates):
-        state = AutomataState(i)
-        states.append(state)
-    return states
+def recebeEstados() -> List[EstadoDeAutomato]:
+    numeroMaximoDeEstados = 10
+    numeroMinimoDeEstados = 1
+    numeroDeEstados = int(input(''))
+    assert (numeroDeEstados >= numeroMinimoDeEstados and
+            numeroDeEstados <= numeroMaximoDeEstados)
+    estados = []
+    for i in range(numeroDeEstados):
+        estado = EstadoDeAutomato(i)
+        estados.append(estado)
+    return estados
 
 
-def getTerminalSymbols() -> List[str]:
-    maxNumberOfTerminalSymbols = 10
-    readInput = input('').split(' ')
-    numberOfTerminalSymbols = int(readInput[0])
-    assert (numberOfTerminalSymbols <= maxNumberOfTerminalSymbols)
-    terminalSymbols = readInput[1:]
-    return terminalSymbols
+def recebeSimbolosTerminais() -> List[str]:
+    numeroMaximoDeSimbolosTerminais = 10
+    entradaDoPrograma = input('').split(' ')
+    numeroDeSimbolosTerminais = int(entradaDoPrograma[0])
+    assert (numeroDeSimbolosTerminais <= numeroMaximoDeSimbolosTerminais)
+    simbolosTerminais = entradaDoPrograma[1:]
+    return simbolosTerminais
 
 
-def getInitialStates() -> List[str]:
-    maxNumberOfInitialStates = 10
-    readInput = input('').split(' ')
-    numberOfInitialStates = int(readInput[0])
-    assert (numberOfInitialStates <= maxNumberOfInitialStates)
-    initialStates = readInput[1:]
-    if numberOfInitialStates == 1:
-        initialStates.append(0)
-    return initialStates
+def recebeEstadosIniciais() -> List[str]:
+    numeroMaximoDeEstadosIniciais = 10
+    entradaDoPrograma = input('').split(' ')
+    numeroDeEstadosIniciais = int(entradaDoPrograma[0])
+    assert (numeroDeEstadosIniciais <= numeroMaximoDeEstadosIniciais)
+    estadosInicias = entradaDoPrograma[1:]
+    if numeroDeEstadosIniciais == 1:
+        estadosInicias.append(0)
+    return estadosInicias
 
 
-def getAcceptanceStates() -> List[str]:
-    maxNumberOfAcceptanceStates = 10
-    minNumberOfAcceptanceStates = 0
-    readInput = input('').split(' ')
-    numberOfAcceptanceStates = int(readInput[0])
-    assert (numberOfAcceptanceStates >= minNumberOfAcceptanceStates and
-            numberOfAcceptanceStates <= maxNumberOfAcceptanceStates)
-    acceptanceStates = readInput[1:]
-    return acceptanceStates
+def recebeEstadosDeAceitacao() -> List[str]:
+    numeroMaximoDeEstadosDeAceitacao = 10
+    numeroMinimoDeEstadosDeAceitacao = 0
+    entradaDoPrograma = input('').split(' ')
+    numeroDeEstadosDeAceitacao = int(entradaDoPrograma[0])
+    assert (numeroDeEstadosDeAceitacao >= numeroMinimoDeEstadosDeAceitacao and
+            numeroDeEstadosDeAceitacao <= numeroMaximoDeEstadosDeAceitacao)
+    estadosDeAceitacao = entradaDoPrograma[1:]
+    return estadosDeAceitacao
 
 
-def getTransitions(automata: Automata) -> None:
-    maxNumberOfTransitions = 50
-    numberOfTransitions = int(input(''))
-    assert (numberOfTransitions <= maxNumberOfTransitions)
-    for _ in range(numberOfTransitions):
-        readInput = input('').split(' ')
-        transition = readInput[1]
-        firstState = readInput[0]
-        secondState = readInput[2]
-        automata.addTransition(firstState, secondState, transition)
+def recebeTransacoes(automata: Automato) -> None:
+    numeroMaximoDeTransacoes = 50
+    numeroDeTransacoes = int(input(''))
+    assert (numeroDeTransacoes <= numeroMaximoDeTransacoes)
+    for _ in range(numeroDeTransacoes):
+        entradaDoPrograma = input('').split(' ')
+        simboloDaTransicao = entradaDoPrograma[1]
+        estadoOrigem = entradaDoPrograma[0]
+        estadoDestino = entradaDoPrograma[2]
+        automata.adicionaTransicao(estadoOrigem, estadoDestino, simboloDaTransicao)
 
 
-def getTestCases() -> List[str]:
-    numberOfCases = int(input(''))
-    testCases = []
-    for _ in range(numberOfCases):
-        case = input('')
-        testCases.append(case)
-    return testCases
+def recebeSequenciasDeTeste() -> List[str]:
+    numeroDeSequencias = int(input(''))
+    sequenciasDeTeste = []
+    for _ in range(numeroDeSequencias):
+        sequencia = input('')
+        sequenciasDeTeste.append(sequencia)
+    return sequenciasDeTeste
