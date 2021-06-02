@@ -15,7 +15,7 @@ class Automato:
             estadoDestino, transicao)
         return
 
-    def testaSequenciaPorTodosEstados(self, sequencia) -> bool:
+    def testaSequenciaPorTodosEstadosIniciais(self, sequencia) -> bool:
         # TODO: Corrigir para funcionar com Lambda
         if sequencia == '-':
             return False
@@ -23,6 +23,7 @@ class Automato:
             eSequenciaValida = self.testaSequencia(sequencia, 0, estadoInicial)
             if eSequenciaValida is True:
                 return True
+        return False
 
     def testaSequencia(self, sequencia: str, indexDaSequencia: int, estado: int) -> bool:
         if len(sequencia) == indexDaSequencia:
@@ -33,9 +34,9 @@ class Automato:
 
         estadoDoAutomato: EstadoDeAutomato = self.estados[estado]
         simboloAtual = sequencia[indexDaSequencia]
-        resultados = list()
+        resultadosDaRecursao = list()
         if simboloAtual in estadoDoAutomato.transicoes.keys():
             for proximoEstado in estadoDoAutomato.transicoes[simboloAtual]:
-                resultados.append(self.testaSequencia(
+                resultadosDaRecursao.append(self.testaSequencia(
                     sequencia=sequencia, indexDaSequencia=indexDaSequencia+1, estado=proximoEstado))
-        return True in resultados
+        return True in resultadosDaRecursao

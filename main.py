@@ -1,4 +1,4 @@
-from InputReader import recebeEstadosDeAceitacao, recebeEstadosIniciais, recebeEstados, recebeSimbolosTerminais, recebeSequenciasDeTeste, recebeTransacoes
+from InputReader import recebeEstadosDeAceitacao, recebeEstadosIniciais, recebeEstados, recebeSimbolosTerminais, recebeSequenciasDeTeste, recebeTransicoes
 from Automata import Automato
 
 
@@ -9,10 +9,10 @@ if __name__ == "__main__":
     estadosDeAceitacao = recebeEstadosDeAceitacao()
     Automato = Automato(estados, simbolosTerminais,
                         estadosIniciais, estadosDeAceitacao)
-    recebeTransacoes(Automato)
+    recebeTransicoes(Automato)
     sequenciasDeTeste = recebeSequenciasDeTeste()
     for sequencia in sequenciasDeTeste:
-        if Automato.testaSequenciaPorTodosEstados(sequencia):
+        if Automato.testaSequenciaPorTodosEstadosIniciais(sequencia):
             print("aceita")
         else:
             print("rejeita")

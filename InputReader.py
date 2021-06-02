@@ -47,7 +47,7 @@ def recebeEstadosDeAceitacao() -> List[str]:
     return estadosDeAceitacao
 
 
-def recebeTransacoes(automata: Automato) -> None:
+def recebeTransicoes(automata: Automato) -> None:
     numeroMaximoDeTransacoes = 50
     numeroDeTransacoes = int(input(''))
     assert (numeroDeTransacoes <= numeroMaximoDeTransacoes)
