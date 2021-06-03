@@ -2,24 +2,49 @@ from Automata import *
 from AutomataState import *
 from typing import List
 
+#
+#   Define as funções responsáveis por ler o arquivo e gerar as estruturas necessárias
+#
+#
 
+
+
+# Le o arquivo de entrada e retorna uma lista com
+# os estados do automato
 def recebeEstados() -> List[EstadoDeAutomato]:
+
+    # Define número máximo e mínimo de estados 
     numeroMaximoDeEstados = 10
     numeroMinimoDeEstados = 1
+
+
+    # Verifica se está no intervalo de máximo e mínimo aceito
+    # de estados
     numeroDeEstados = int(input(''))
     assert (numeroDeEstados >= numeroMinimoDeEstados and
             numeroDeEstados <= numeroMaximoDeEstados)
+
+    # Inicializa estados
     estados = []
     for i in range(numeroDeEstados):
+        # Cria novo estado
         estado = EstadoDeAutomato(i)
+        # Adiciona na lista de estados
         estados.append(estado)
     return estados
 
 
+## Lê a lista de símbolos terminais, retorna uma lista destes símbolos
 def recebeSimbolosTerminais() -> List[str]:
     numeroMaximoDeSimbolosTerminais = 10
+
+    # divide a entrada pelos espaços
     entradaDoPrograma = input('').split(' ')
+
+    # Primeiro símbolo = número de estados terminais
     numeroDeSimbolosTerminais = int(entradaDoPrograma[0])
+
+    # Verifica se número está no range
     assert (numeroDeSimbolosTerminais <= numeroMaximoDeSimbolosTerminais)
     simbolosTerminais = entradaDoPrograma[1:]
     return simbolosTerminais
