@@ -1,5 +1,5 @@
-from InputReader import recebeEstadosDeAceitacao, recebeEstadosIniciais, recebeEstados, recebeSimbolosTerminais, recebeSequenciasDeTeste, recebeTransicoes
-from Automata import Automato
+from InputReader import *
+from Automata import *
 from time import sleep
 
 if __name__ == "__main__":

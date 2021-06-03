@@ -1,6 +1,6 @@
-from Automata import Automato
+from Automata import *
+from AutomataState import *
 from typing import List
-from AutomataState import EstadoDeAutomato
 
 
 def recebeEstados() -> List[EstadoDeAutomato]:
