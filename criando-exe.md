@@ -1,6 +1,6 @@
 # Como criar um exe
 
-Para criar o exe basta ter instalado o módulo pyinstaller e executar o comando:
+Para criar o exe basta ter instalado o módulo pyinstaller do python instalado e executar o comando:
 
 ```bash
 pyinstaller --onefile main.py
