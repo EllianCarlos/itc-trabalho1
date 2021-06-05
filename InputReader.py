@@ -29,6 +29,8 @@ def recebeEstados() -> List[EstadoDeAutomato]:
     for i in range(numeroDeEstados):
         # Cria novo estado
         estado = EstadoDeAutomato(i)
+        # Adiciona a transição vazia em todos os estados
+        estado.adicionaTransicao(estado.identificador, "-")
         # Adiciona na lista de estados
         estados.append(estado)
     return estados

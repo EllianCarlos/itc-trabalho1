@@ -22,8 +22,6 @@ class EstadoDeAutomato:
 
         # Inicializa dicionário com a lista de transições
         self.transicoes: Dict[str, List[int]] = {}
-        # sempre coloca uma transição para si mesmo na cadeia nula:
-        self.transicoes["-"].append(int(self))
         pass
 
 
